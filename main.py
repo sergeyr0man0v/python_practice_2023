@@ -1,8 +1,9 @@
-from ClassicGame import *
-from ObstaclesGame import *
-from GhostGame import *
-from DeadlyCocktailGame import *
-from Game import *
+from GameModes.ClassicGame import *
+from GameModes.ObstaclesGame import *
+from GameModes.GhostGame import *
+from GameModes.DeadlyCocktailGame import *
+from GameModes.FriendlyGame import *
+from GameModes.Game import *
 import pygame_menu
 
 game = ClassicGame()
@@ -19,6 +20,8 @@ def set_difficulty(value, level):
             game = GhostGame()
         case 4:
             game = DeadlyCocktailGame()
+        case 5:
+            game = FriendlyGame()
         case _:
             print("Something went wrong")
 
@@ -38,7 +41,7 @@ pygame.init()
 surface = pygame.display.set_mode((600, 400))
 menu = pygame_menu.Menu("Welcome to zmeika mat' vashu", 600, 400,
                         theme=pygame_menu.themes.THEME_SOLARIZED)
-menu.add.selector('Level :', [('Classic', 1), ('Obstacles', 2), ('Ghost', 3), ('DealyCocktail', 4)], onchange=set_difficulty)
+menu.add.selector('Level :', [('Classic', 1), ('Obstacles', 2), ('Ghost', 3), ('DealyCocktail', 4), ('Friendly', 5)], onchange=set_difficulty)
 menu.add.button('Play', start_the_game)
 menu.add.button('Quit', pygame_menu.events.EXIT)
 
